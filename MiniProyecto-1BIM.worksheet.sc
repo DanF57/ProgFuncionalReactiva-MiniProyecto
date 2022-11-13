@@ -4,14 +4,19 @@ def simpson(a:Int, b:Int, f:Double => Double) : Double = {
     (b-a)*((f(a)+4*f((a+b)/2)+f(b))/6)
 }
 
-def simpsonCompuesta(a:Int, b:Int, n:Int, f:Double => Double) : Double = {
-	val h = (b-a)/n
+def simpsonCompuesta(a:Double, b:Double, n:Int, f:Double => Double) : Double = {
+    val h = (b-a)/n
+    val xj = (j:Double) => a + (j*h)
 
-	f(x(2*j-2))+4*f(x(2*j-1))+f(x(2*j))
-}
+    val formula = (j:Double) => f(xj(2*j-2))+4*f(xj(2*j-1))+f(xj(2*j))
+    (h/3) * (1 to (n/2)).map(formula(_)).sum
+} 
+
+val nPar = 8
 
 val f = (x : Double) => -Math.pow(x,2)+(8*x)-12
 simpson(3, 5, f)
+simpsonCompuesta(3, 5, nPar, f)
 
 val g = (x : Double) => 3*Math.pow(x,2)
 simpson(0,2,g)
