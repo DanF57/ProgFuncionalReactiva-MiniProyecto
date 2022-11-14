@@ -12,6 +12,15 @@ def simpsonCompuesta(a:Double, b:Double, n:Int, f:Double => Double) : Double = {
     (h/3) * (1 to (n/2)).map(formula(_)).sum
 } 
 
+def simpsonExtendida(a:Int, b:Int, f:Double => Double) : Double = {
+    val n = 2 * (b-a)
+    val h = (b-a)/n
+    val s1 = (i:Int) => (f(a+(i*h)))
+    val s2 = (j:Int) => (f(a+(j*h)))
+
+    (h/3) * (f(a) + (4 * Range(1, n, 2).map(s1).sum) + (2 * Range(2, n-1, 2).map(s2).sum) + f(b))
+}
+
 val nPar = 8
 
 val f = (x : Double) => -Math.pow(x,2)+(8*x)-12
