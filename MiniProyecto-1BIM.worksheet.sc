@@ -53,7 +53,7 @@ simpsonCompuesta(2, 3, nPar, k)
 simpsonExtendida(2, 3, k)
 
 val l = (x : Double) => (1/1+Math.pow(x,2))
-simpson(0, 2, l)
-simpsonCompuesta(0, 2, nPar, l)
-simpsonExtendida(0, 2, l)
+simpson(0, 1, l)
+simpsonCompuesta(0, 1, nPar, l)
+simpsonExtendida(0, 1, l)
 
